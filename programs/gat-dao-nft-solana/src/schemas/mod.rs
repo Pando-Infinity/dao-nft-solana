@@ -9,3 +9,6 @@ pub use access_control::*;
 
 pub mod writer_info;
 pub use writer_info::*;
+
+pub mod proposal_info;
+pub use proposal_info::*;
