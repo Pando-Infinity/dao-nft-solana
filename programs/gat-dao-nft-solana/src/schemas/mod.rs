@@ -6,3 +6,6 @@ pub use dao_info::*;
 
 pub mod access_control;
 pub use access_control::*;
+
+pub mod writer_info;
+pub use writer_info::*;
