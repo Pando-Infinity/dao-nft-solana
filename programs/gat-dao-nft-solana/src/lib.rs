@@ -35,4 +35,32 @@ pub mod gat_dao_nft_solana {
     ) -> Result<()> {
         writers::dao_initialize(ctx, nft_collection_to_vote, token_to_vote)
     }
+
+    pub fn writer_grant_role(ctx: Context<WriterRole>, member: Pubkey, role: u8) -> Result<()> {
+        writers::grant_role(ctx, member, role)
+    }
+
+    pub fn writer_revoke_role(ctx: Context<WriterRole>, member: Pubkey) -> Result<()> {
+        writers::revoke_role(ctx, member)
+    }
+
+    pub fn writer_create_proposal(
+        ctx: Context<WriterCreateProposal>,
+        proposal_number: u16,
+        proposal_content: String,
+        vote_option: Vec<String>,
+        vote_by: u8,
+        start_time: u64,
+        end_time: u64,
+    ) -> Result<()> {
+        writers::create_proposal(
+            ctx,
+            proposal_number,
+            proposal_content,
+            vote_by,
+            vote_option,
+            start_time,
+            end_time,
+        )
+    }
 }
