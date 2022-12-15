@@ -12,3 +12,9 @@ pub use writer_info::*;
 
 pub mod proposal_info;
 pub use proposal_info::*;
+
+pub mod vote_logging;
+pub use vote_logging::*;
+
+pub mod reader_unreclaim_nfts;
+pub use reader_unreclaim_nfts::*;
