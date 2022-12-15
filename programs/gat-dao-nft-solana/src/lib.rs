@@ -63,4 +63,17 @@ pub mod gat_dao_nft_solana {
             end_time,
         )
     }
+
+    pub fn reader_vote_by_nft(
+        ctx: Context<ReaderVoteWithNft>,
+        proposal_number: u16,
+        vote_option_index: u16,
+        vote_data: VoteData,
+    ) -> Result<()> {
+        readers::vote_with_nft(ctx, proposal_number, vote_option_index, vote_data)
+    }
+
+    pub fn reader_reclaim_nft(ctx: Context<ReaderReclaimNft>) -> Result<()> {
+        readers::reclaim_nft(ctx)
+    }
 }
