@@ -2,7 +2,7 @@ use crate::cross_programs::Nft;
 use crate::helpers::{
     errors::ErrorCode, PROPOSAL_INFO_ACCOUNT_PREFIX, WRITER_DAO_INFO_ACCOUNT_PREFIX,
 };
-use crate::helpers::{VoteData, UNRECLAIM_NFT_ACCOUNT_PREFIX, VOTE_INFO_ACCOUNT_PREFIX};
+use crate::helpers::{events::*, VoteData, UNRECLAIM_NFT_ACCOUNT_PREFIX, VOTE_INFO_ACCOUNT_PREFIX};
 use crate::schemas::{DaoInfo, ProposalInfo, ReaderUnReclaimNfts, VoteLogging, WriterInfo};
 use crate::{verify_signature, DAO_INFO_ACCOUNT_PREFIX};
 use anchor_lang::prelude::*;
@@ -175,5 +175,12 @@ pub fn vote_with_nft(
     reader_unreclaim_nft
         .proposal_info_list
         .push(ctx.accounts.proposal_info.key());
+    emit!(ProposalVoted {
+        reader: ctx.accounts.reader.key(),
+        writer: ctx.accounts.writer.key(),
+        proposal: ctx.accounts.proposal_info.key(),
+        nft_mint: ctx.accounts.nft_mint.key(),
+        timestamp: now,
+    });
     Ok(())
 }
